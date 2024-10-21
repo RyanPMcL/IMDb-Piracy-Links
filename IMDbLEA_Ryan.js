@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        IMDb: Piracy Links - Alpha
 // @description A script to easily access piracy related links on IMDb pages.
-// @version     Alpha-1.1
+// @version     Alpha-2
 // @author      Ryan McLaughlin
 // @namespace   https://github.com/RyanPMcL/IMDb-Piracy-Links
 // @match       *://*.imdb.com/title/tt*/*
@@ -21,7 +21,7 @@
 (function (preact, hooks) {
     'use strict';
 
-    var version = "Alpha-1.1";
+    var version = "Alpha-2";
     var description = "A script to easily access piracy related links on IMDb pages.";
     var homepage = "https://github.com/RyanPMcL/IMDb-Piracy-Links#readme";
 
@@ -221,67 +221,73 @@
             className: checked ? css$5.checked : null
         }, input, icon, " ", title, " ", extraIcons);
     };
-    const CategoryList = ({ enabled, name, setEnabled, sites }) => {
-        const siteLabels = sites.map(site =>
-                                     preact.h(SiteLabel, {
-            checked: enabled.includes(site.id),
-            setEnabled: setEnabled,
-            site: site
+    const CategoryList = ({ enabled, name, setEnabled, sites, category }) => {
+    const siteLabels = sites.map(site => 
+        preact.h(SiteLabel, { 
+            checked: enabled.includes(`${site.id}-${category}`), 
+            setEnabled: (id, isEnabled) => setEnabled(`${id}-${category}`, isEnabled), 
+            site: site 
         })
-                                    );
-        return preact.h("div", { className: css$5.catList },
-                        preact.h("h4", null, name, " ", preact.h("span", null, "(", sites.length, ")")),
-                        siteLabels
-                       );
-    };
+    );
+    return preact.h("div", { className: css$5.catList }, 
+        preact.h("h4", null, name, " ", preact.h("span", null, "(", sites.length, ")")), 
+        siteLabels
+    );
+};
 
-    const Sites = ({ enabledSites, setEnabledSites, sites }) => {
-        const [q, setQ] = hooks.useState('');
+const Sites = ({ enabledSites, setEnabledSites, sites }) => {
+    const [q, setQ] = hooks.useState('');
+    
+    const catSites = Object.keys(CATEGORIES).map(cat => {
+        const s = sites.filter(site => site.category.includes(cat));
+        if (q.length) {
+            return s.filter(site => site.title.toLowerCase().includes(q));
+        }
+        return s;
+    });
 
-        const catSites = Object.keys(CATEGORIES).map(cat => {
-            const s = sites.filter(site => site.category.includes(cat));
-            if (q.length) {
-                return s.filter(site => site.title.toLowerCase().includes(q));
-            }
-            return s;
-        });
-
-        const cats = Object.entries(CATEGORIES).map(([cat, catName], i) =>
-                                                    catSites[i].length ? preact.h(CategoryList, {
-            enabled: enabledSites,
-            key: cat,
-            name: catName,
-            setEnabled: setEnabledSites,
-            sites: catSites[i]
+    const cats = Object.entries(CATEGORIES).map(([cat, catName], i) => 
+        catSites[i].length ? preact.h(CategoryList, { 
+            enabled: enabledSites, 
+            key: cat, 
+            name: catName, 
+            setEnabled: setEnabledSites, 
+            sites: catSites[i],
+            category: cat
         }) : null
-                                                   );
+    );
 
-        const total = catSites.reduce((acc, s) => acc + s.length, 0);
+    const total = catSites.reduce((acc, s) => acc + s.length, 0);
 
-        return preact.h(preact.Fragment, null,
-                        preact.h("div", { className: css$5.searchBar },
-                                 preact.h(SearchInput, { q: q, setQ: setQ }),
-                                 preact.h("div", { className: css$5.resultCount }, "Showing ", preact.h("span", null, total), " sites.")
-                                ),
-                        preact.h("div", { className: css$5.siteList }, cats)
-                       );
-    };
+    return preact.h(preact.Fragment, null, 
+        preact.h("div", { className: css$5.searchBar }, 
+            preact.h(SearchInput, { q: q, setQ: setQ }), 
+            preact.h("div", { className: css$5.resultCount }, "Showing ", preact.h("span", null, total), " sites.")
+        ), 
+        preact.h("div", { className: css$5.siteList }, cats)
+    );
+};
 
     var css_248z$4 = ".About_about__wuWQp {\n  padding: 1em 0;\n  position: relative;\n}\n\n  .About_about__wuWQp ul > li {\n    margin-bottom: 0;\n}\n\n  .About_about__wuWQp h2 {\n    font-size: 20px;\n    margin: 0.5em 0;\n}\n\n  .About_about__wuWQp > *:last-child {\n    margin-bottom: 0;\n}\n\n  .About_about__wuWQp .About_top__jQHYs {\n    text-align: center;\n}\n\n  .About_about__wuWQp .About_content__hReHO {\n    width: 61.8%;\n    margin: 0 auto;\n}\n";
     var css$4 = {"about":"About_about__wuWQp","top":"About_top__jQHYs","content":"About_content__hReHO"};
     styleInject(css_248z$4);
 
     const About = () => preact.h("div", {
-        className: css$4.about
-    }, preact.h("div", {
-        className: css$4.top
-    }, preact.h("h2", null, NAME_VERSION), preact.h("p", null, DESCRIPTION),
+      className: css$4.about
+    }, 
+      preact.h("h2", null, NAME_VERSION),
+      preact.h("p", null, DESCRIPTION),
       preact.h("h2", null, "License"),
-      preact.h("p", null, "This script is licensed under the terms of the ", preact.h("a", {
-        target: "_blank",
-        rel: "noreferrer",
-        href: "https://github.com/RyanPMcL/IMDb-Piracy-Links/blob/master/LICENSE"
-    }, "GPL-2.0 License"))));
+      preact.h("p", null, "This script is licensed under the terms of the ",
+        preact.h("a", {
+          target: "_blank",
+          rel: "noreferrer",
+          href: "https://github.com/RyanPMcL/IMDb-Piracy-Links/blob/master/LICENSE"
+        }, 
+          "GPL-2.0 License"
+        )
+      )
+    );
 
     var css_248z$3 = ".Config_popover__qMfu9 {\n  background-color: #a5a5a5;\n  border-radius: 4px;\n  box-shadow: 0 0 2em rgba(0, 0, 0, 0.1);\n  color: #333;\n  display: block;\n  font-family: Verdana, Arial, sans-serif;\n  font-size: 11px;\n  left: calc(-390px + 35px);\n  line-height: 1.5rem;\n  padding: 10px;\n  position: absolute;\n  top: calc(20px + 8px);\n  white-space: nowrap;\n  width: 390px;\n  z-index: 100;\n}\n.Config_popover__qMfu9.Config_layout-legacy__M6fyd {\n    left: calc(-800px + 235px);\n}\n.Config_popover__qMfu9.Config_layout-legacy__M6fyd:before {\n      right: calc(235px - 2 * 8px);\n}\n.Config_popover__qMfu9:before {\n    border-bottom: 8px solid #a5a5a5;\n    border-left: 8px solid transparent;\n    border-right: 8px solid transparent;\n    border-top: 8px solid transparent;\n    content: \"\";\n    display: block;\n    height: 8px;\n    right: calc(35px - 2 * 8px);\n    position: absolute;\n    top: calc(-2 * 8px);\n    width: 0;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK {\n    display: flex;\n    flex-direction: column;\n    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 {\n      display: flex;\n      flex-direction: row;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 .Config_link__GTbGq {\n        flex-grow: 1;\n        text-align: right;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 .Config_link__GTbGq > a {\n          color: #333;\n          margin-left: 12px;\n          margin-right: 4px;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 .Config_link__GTbGq > a:visited {\n            color: #333;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 > button {\n        background-color: rgba(0, 0, 0, 0.05);\n        border-bottom-left-radius: 0;\n        border-bottom-right-radius: 0;\n        border-bottom: transparent;\n        border-left: 1px solid rgba(0, 0, 0, 0.25);\n        border-right: 1px solid rgba(0, 0, 0, 0.25);\n        border-top-left-radius: 2px;\n        border-top-right-radius: 2px;\n        border-top: 1px solid rgba(0, 0, 0, 0.25);\n        color: #424242;\n        font-size: 12px;\n        margin: 0 6px 0 0;\n        outline: none;\n        padding: 0 6px;\n        transform: translateY(1px);\n        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 > button:hover {\n          background-color: rgba(0, 0, 0, 0.1);\n          color: #222;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 > button.Config_active__vD-Fl {\n          background-color: #c2c2c2;\n          color: #222;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 > button:last-child {\n          margin-right: 0;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 > button > img {\n          vertical-align: text-bottom;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_body__wtDKH {\n      background-color: #c2c2c2;\n      border-bottom-left-radius: 2px;\n      border-bottom-right-radius: 2px;\n      border-top-right-radius: 2px;\n      border: 1px solid rgba(0, 0, 0, 0.25);\n      padding: 12px 10px 12px;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_body__wtDKH > div {\n        overflow: hidden;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_body__wtDKH > div > *:first-child {\n          margin-top: 0;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_body__wtDKH > div > *:last-child {\n          margin-bottom: 0;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_controls__-N2ev {\n      display: flex;\n      flex-direction: row;\n      margin-top: 10px;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_controls__-N2ev > div:first-child {\n        flex-grow: 1;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_controls__-N2ev button {\n        padding-bottom: 0;\n        padding-top: 0;\n        margin-right: 12px;\n}\n";
     var css$3 = {"popover":"Config_popover__qMfu9","layout-legacy":"Config_layout-legacy__M6fyd","inner":"Config_inner__oVRAK","top":"Config_top__6DKJ8","link":"Config_link__GTbGq","active":"Config_active__vD-Fl","body":"Config_body__wtDKH","controls":"Config_controls__-N2ev"};
@@ -643,9 +649,9 @@
     const metaTagType = document.querySelector('meta[property="og:type"]').getAttribute('content');
 
     return Object.entries(CATEGORIES).map(([category, categoryName]) => {
-        const catSites = sites.filter(site =>
-            site.category.includes(category) &&
-            config.enabled_sites.includes(site.id) &&
+        const catSites = sites.filter(site => 
+            site.categories.includes(category) && 
+            config.enabled_sites.includes(`${site.id}-${category}`) &&
             (category === 'movie' && metaTagType === 'video.movie' || category === 'tv' && metaTagType === 'video.tv_show')
         );
 
@@ -654,13 +660,13 @@
         }
 
         const caption = config.show_category_captions ? preact.h("h4", { className: css$1.h4 }, categoryName) : null;
-        return preact.h(preact.Fragment, null, caption,
-            preact.h("div", { className: css$1.linkList },
-                catSites.map((site, i) => preact.h(SiteLink, {
-                    config: config,
-                    imdbInfo: imdbInfo,
-                    last: i === catSites.length - 1,
-                    site: site
+        return preact.h(preact.Fragment, null, caption, 
+            preact.h("div", { className: css$1.linkList }, 
+                catSites.map((site, i) => preact.h(SiteLink, { 
+                    config: config, 
+                    imdbInfo: imdbInfo, 
+                    last: i === catSites.length - 1, 
+                    site: site 
                 }))
             )
         );
