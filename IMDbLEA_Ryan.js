@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        IMDb: Piracy Links - Alpha
 // @description A script to easily access piracy related links on IMDb pages.
-// @version     Alpha-1.1
+// @version     Alpha-3
 // @author      Ryan McLaughlin
 // @namespace   https://github.com/RyanPMcL/IMDb-Piracy-Links
 // @match       *://*.imdb.com/title/tt*/*
@@ -21,7 +21,7 @@
 (function (preact, hooks) {
     'use strict';
 
-    var version = "Alpha-1.1";
+    var version = "Alpha-3";
     var description = "A script to easily access piracy related links on IMDb pages.";
     var homepage = "https://github.com/RyanPMcL/IMDb-Piracy-Links#readme";
 
@@ -272,16 +272,21 @@
     styleInject(css_248z$4);
 
     const About = () => preact.h("div", {
-        className: css$4.about
-    }, preact.h("div", {
-        className: css$4.top
-    }, preact.h("h2", null, NAME_VERSION), preact.h("p", null, DESCRIPTION),
+      className: css$4.about
+    }, 
+      preact.h("h2", null, NAME_VERSION),
+      preact.h("p", null, DESCRIPTION),
       preact.h("h2", null, "License"),
-      preact.h("p", null, "This script is licensed under the terms of the ", preact.h("a", {
-        target: "_blank",
-        rel: "noreferrer",
-        href: "https://github.com/RyanPMcL/IMDb-Piracy-Links/blob/master/LICENSE"
-    }, "GPL-2.0 License"))));
+      preact.h("p", null, "This script is licensed under the terms of the ",
+        preact.h("a", {
+          target: "_blank",
+          rel: "noreferrer",
+          href: "https://github.com/RyanPMcL/IMDb-Piracy-Links/blob/master/LICENSE"
+        }, 
+          "GPL-2.0 License"
+        )
+      )
+    );
 
     var css_248z$3 = ".Config_popover__qMfu9 {\n  background-color: #a5a5a5;\n  border-radius: 4px;\n  box-shadow: 0 0 2em rgba(0, 0, 0, 0.1);\n  color: #333;\n  display: block;\n  font-family: Verdana, Arial, sans-serif;\n  font-size: 11px;\n  left: calc(-390px + 35px);\n  line-height: 1.5rem;\n  padding: 10px;\n  position: absolute;\n  top: calc(20px + 8px);\n  white-space: nowrap;\n  width: 390px;\n  z-index: 100;\n}\n.Config_popover__qMfu9.Config_layout-legacy__M6fyd {\n    left: calc(-800px + 235px);\n}\n.Config_popover__qMfu9.Config_layout-legacy__M6fyd:before {\n      right: calc(235px - 2 * 8px);\n}\n.Config_popover__qMfu9:before {\n    border-bottom: 8px solid #a5a5a5;\n    border-left: 8px solid transparent;\n    border-right: 8px solid transparent;\n    border-top: 8px solid transparent;\n    content: \"\";\n    display: block;\n    height: 8px;\n    right: calc(35px - 2 * 8px);\n    position: absolute;\n    top: calc(-2 * 8px);\n    width: 0;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK {\n    display: flex;\n    flex-direction: column;\n    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 {\n      display: flex;\n      flex-direction: row;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 .Config_link__GTbGq {\n        flex-grow: 1;\n        text-align: right;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 .Config_link__GTbGq > a {\n          color: #333;\n          margin-left: 12px;\n          margin-right: 4px;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 .Config_link__GTbGq > a:visited {\n            color: #333;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 > button {\n        background-color: rgba(0, 0, 0, 0.05);\n        border-bottom-left-radius: 0;\n        border-bottom-right-radius: 0;\n        border-bottom: transparent;\n        border-left: 1px solid rgba(0, 0, 0, 0.25);\n        border-right: 1px solid rgba(0, 0, 0, 0.25);\n        border-top-left-radius: 2px;\n        border-top-right-radius: 2px;\n        border-top: 1px solid rgba(0, 0, 0, 0.25);\n        color: #424242;\n        font-size: 12px;\n        margin: 0 6px 0 0;\n        outline: none;\n        padding: 0 6px;\n        transform: translateY(1px);\n        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 > button:hover {\n          background-color: rgba(0, 0, 0, 0.1);\n          color: #222;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 > button.Config_active__vD-Fl {\n          background-color: #c2c2c2;\n          color: #222;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 > button:last-child {\n          margin-right: 0;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 > button > img {\n          vertical-align: text-bottom;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_body__wtDKH {\n      background-color: #c2c2c2;\n      border-bottom-left-radius: 2px;\n      border-bottom-right-radius: 2px;\n      border-top-right-radius: 2px;\n      border: 1px solid rgba(0, 0, 0, 0.25);\n      padding: 12px 10px 12px;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_body__wtDKH > div {\n        overflow: hidden;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_body__wtDKH > div > *:first-child {\n          margin-top: 0;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_body__wtDKH > div > *:last-child {\n          margin-bottom: 0;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_controls__-N2ev {\n      display: flex;\n      flex-direction: row;\n      margin-top: 10px;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_controls__-N2ev > div:first-child {\n        flex-grow: 1;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_controls__-N2ev button {\n        padding-bottom: 0;\n        padding-top: 0;\n        margin-right: 12px;\n}\n";
     var css$3 = {"popover":"Config_popover__qMfu9","layout-legacy":"Config_layout-legacy__M6fyd","inner":"Config_inner__oVRAK","top":"Config_top__6DKJ8","link":"Config_link__GTbGq","active":"Config_active__vD-Fl","body":"Config_body__wtDKH","controls":"Config_controls__-N2ev"};
