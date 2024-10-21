@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        IMDb: Piracy Links - Alpha
 // @description A script to easily access piracy related links on IMDb pages.
-// @version     Alpha-2.3
+// @version     Alpha-2.4
 // @author      Ryan McLaughlin
 // @namespace   https://github.com/RyanPMcL/IMDb-Piracy-Links
 // @match       *://*.imdb.com/title/tt*/*
@@ -21,7 +21,7 @@
 (function (preact, hooks) {
     'use strict';
 
-    var version = "Alpha-2.3";
+    var version = "Alpha-2.4";
     var description = "A script to easily access piracy related links on IMDb pages.";
     var homepage = "https://github.com/RyanPMcL/IMDb-Piracy-Links#readme";
 
@@ -223,10 +223,12 @@
     };
     const CategoryList = ({ enabled, name, setEnabled, sites, category }) => {
     const handleSetEnabled = (id, isEnabled) => {
-        const newEnabled = isEnabled 
-            ? [...enabled, id] 
-            : enabled.filter(item => item !== id);
-        setEnabled(newEnabled);
+        setEnabled(prevEnabled => {
+            const newEnabled = isEnabled 
+                ? [...prevEnabled, id] 
+                : prevEnabled.filter(item => item !== id);
+            return newEnabled;
+        });
     };
 
     const siteLabels = sites.map(site => 
@@ -247,10 +249,12 @@ const Sites = ({ enabledSites, setEnabledSites, sites }) => {
 
     // Persisting the selected state
     const handleSetEnabled = (id, isEnabled) => {
-        const newEnabled = isEnabled 
-            ? [...enabledSites, id] 
-            : enabledSites.filter(item => item !== id);
-        setEnabledSites(newEnabled);
+        setEnabledSites(prevEnabled => {
+            const newEnabled = isEnabled 
+                ? [...prevEnabled, id] 
+                : prevEnabled.filter(item => item !== id);
+            return newEnabled;
+        });
     };
 
     const catSites = Object.keys(CATEGORIES).map(cat => {
@@ -661,31 +665,31 @@ const Sites = ({ enabledSites, setEnabledSites, sites }) => {
     styleInject(css_248z$1);
 
     const LinkList = ({ config, imdbInfo, sites }) => {
-    const metaTagType = document.querySelector('meta[property="og:type"]').getAttribute('content');
+  const metaTagType = document.querySelector('meta[property="og:type"]').getAttribute('content');
 
-    return Object.entries(CATEGORIES).map(([category, categoryName]) => {
-        const catSites = sites.filter(site => 
-            site.categories.includes(category) && 
-            config.enabled_sites.includes(`${site.id}-${category}`) &&
-            (category === 'movie' && metaTagType === 'video.movie' || category === 'tv' && metaTagType === 'video.tv_show')
-        );
+  return Object.entries(CATEGORIES).map(([category, categoryName]) => {
+    const catSites = sites.filter(site =>
+      site.categories.includes(category) &&
+      config.enabled_sites.includes(`${site.id}-${category}`) &&
+      (category === 'movie' && metaTagType === 'video.movie' || category === 'tv' && metaTagType === 'video.tv_show')
+    );
 
-        if (!catSites.length) {
-            return null;
-        }
+    if (!catSites.length) {
+      return null;
+    }
 
-        const caption = config.show_category_captions ? preact.h("h4", { className: css$1.h4 }, categoryName) : null;
-        return preact.h(preact.Fragment, null, caption, 
-            preact.h("div", { className: css$1.linkList }, 
-                catSites.map((site, i) => preact.h(SiteLink, { 
-                    config: config, 
-                    imdbInfo: imdbInfo, 
-                    last: i === catSites.length - 1, 
-                    site: site 
-                }))
-            )
-        );
-    });
+    const caption = config.show_category_captions ? preact.h("h4", { className: css$1.h4 }, categoryName) : null;
+    return preact.h(preact.Fragment, null, caption,
+      preact.h("div", { className: css$1.linkList },
+        catSites.map((site, i) => preact.h(SiteLink, {
+          config: config,
+          imdbInfo: imdbInfo,
+          last: i === catSites.length - 1,
+          site: site
+        }))
+      )
+    );
+  });
 };
 
     var css_248z = ".App_configWrapper__bVP2M {\n  position: absolute;\n  right: 20px;\n  top: 20px;\n}\n\n  .App_configWrapper__bVP2M > button {\n    background: transparent;\n    border: none;\n    cursor: pointer;\n    outline: none;\n    padding: 0;\n}\n\n  .App_configWrapper__bVP2M > button > img {\n      vertical-align: baseline;\n}\n";
