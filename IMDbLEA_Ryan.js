@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        IMDb: Piracy Links - Alpha
 // @description A script to easily access piracy related links on IMDb pages.
-// @version     Alpha-2.2
+// @version     Alpha-2.3
 // @author      Ryan McLaughlin
 // @namespace   https://github.com/RyanPMcL/IMDb-Piracy-Links
 // @match       *://*.imdb.com/title/tt*/*
@@ -21,7 +21,7 @@
 (function (preact, hooks) {
     'use strict';
 
-    var version = "Alpha-2.2";
+    var version = "Alpha-2.3";
     var description = "A script to easily access piracy related links on IMDb pages.";
     var homepage = "https://github.com/RyanPMcL/IMDb-Piracy-Links#readme";
 
@@ -244,7 +244,15 @@
 
 const Sites = ({ enabledSites, setEnabledSites, sites }) => {
     const [q, setQ] = hooks.useState('');
-    
+
+    // Persisting the selected state
+    const handleSetEnabled = (id, isEnabled) => {
+        const newEnabled = isEnabled 
+            ? [...enabledSites, id] 
+            : enabledSites.filter(item => item !== id);
+        setEnabledSites(newEnabled);
+    };
+
     const catSites = Object.keys(CATEGORIES).map(cat => {
         const s = sites.filter(site => site.categories.includes(cat));
         if (q.length) {
@@ -258,7 +266,7 @@ const Sites = ({ enabledSites, setEnabledSites, sites }) => {
             enabled: enabledSites, 
             key: cat, 
             name: catName, 
-            setEnabled: setEnabledSites, 
+            setEnabled: handleSetEnabled, 
             sites: catSites[i],
             category: cat
         }) : null
