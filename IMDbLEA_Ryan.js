@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        IMDb: Piracy Links - Alpha
 // @description A script to easily access piracy related links on IMDb pages.
-// @version     Alpha-2.1
+// @version     Alpha-2.2
 // @author      Ryan McLaughlin
 // @namespace   https://github.com/RyanPMcL/IMDb-Piracy-Links
 // @match       *://*.imdb.com/title/tt*/*
@@ -21,7 +21,7 @@
 (function (preact, hooks) {
     'use strict';
 
-    var version = "Alpha-2.1";
+    var version = "Alpha-2.2";
     var description = "A script to easily access piracy related links on IMDb pages.";
     var homepage = "https://github.com/RyanPMcL/IMDb-Piracy-Links#readme";
 
@@ -222,10 +222,17 @@
         }, input, icon, " ", title, " ", extraIcons);
     };
     const CategoryList = ({ enabled, name, setEnabled, sites, category }) => {
+    const handleSetEnabled = (id, isEnabled) => {
+        const newEnabled = isEnabled 
+            ? [...enabled, id] 
+            : enabled.filter(item => item !== id);
+        setEnabled(newEnabled);
+    };
+
     const siteLabels = sites.map(site => 
         preact.h(SiteLabel, { 
             checked: enabled.includes(`${site.id}-${category}`), 
-            setEnabled: (id, isEnabled) => setEnabled(`${id}-${category}`, isEnabled), 
+            setEnabled: (id, isEnabled) => handleSetEnabled(`${site.id}-${category}`, isEnabled), 
             site: site 
         })
     );
@@ -236,36 +243,36 @@
 };
 
 const Sites = ({ enabledSites, setEnabledSites, sites }) => {
-  const [q, setQ] = hooks.useState('');
+    const [q, setQ] = hooks.useState('');
+    
+    const catSites = Object.keys(CATEGORIES).map(cat => {
+        const s = sites.filter(site => site.categories.includes(cat));
+        if (q.length) {
+            return s.filter(site => site.title.toLowerCase().includes(q));
+        }
+        return s;
+    });
 
-  const catSites = Object.keys(CATEGORIES).map(cat => {
-    const s = sites.filter(site => site.categories.includes(cat));
-    if (q.length) {
-      return s.filter(site => site.title.toLowerCase().includes(q));
-    }
-    return s;
-  });
+    const cats = Object.entries(CATEGORIES).map(([cat, catName], i) => 
+        catSites[i].length ? preact.h(CategoryList, { 
+            enabled: enabledSites, 
+            key: cat, 
+            name: catName, 
+            setEnabled: setEnabledSites, 
+            sites: catSites[i],
+            category: cat
+        }) : null
+    );
 
-  const cats = Object.entries(CATEGORIES).map(([cat, catName], i) =>
-    catSites[i].length ? preact.h(CategoryList, {
-      enabled: enabledSites,
-      key: cat,
-      name: catName,
-      setEnabled: setEnabledSites,
-      sites: catSites[i],
-      category: cat
-    }) : null
-  );
+    const total = catSites.reduce((acc, s) => acc + s.length, 0);
 
-  const total = catSites.reduce((acc, s) => acc + s.length, 0);
-
-  return preact.h(preact.Fragment, null,
-    preact.h("div", { className: css$5.searchBar },
-      preact.h(SearchInput, { q: q, setQ: setQ }),
-      preact.h("div", { className: css$5.resultCount }, "Showing ", preact.h("span", null, total), " sites.")
-    ),
-    preact.h("div", { className: css$5.siteList }, cats)
-  );
+    return preact.h(preact.Fragment, null, 
+        preact.h("div", { className: css$5.searchBar }, 
+            preact.h(SearchInput, { q: q, setQ: setQ }), 
+            preact.h("div", { className: css$5.resultCount }, "Showing ", preact.h("span", null, total), " sites.")
+        ), 
+        preact.h("div", { className: css$5.siteList }, cats)
+    );
 };
 
     var css_248z$4 = ".About_about__wuWQp {\n  padding: 1em 0;\n  position: relative;\n}\n\n  .About_about__wuWQp ul > li {\n    margin-bottom: 0;\n}\n\n  .About_about__wuWQp h2 {\n    font-size: 20px;\n    margin: 0.5em 0;\n}\n\n  .About_about__wuWQp > *:last-child {\n    margin-bottom: 0;\n}\n\n  .About_about__wuWQp .About_top__jQHYs {\n    text-align: center;\n}\n\n  .About_about__wuWQp .About_content__hReHO {\n    width: 61.8%;\n    margin: 0 auto;\n}\n";
@@ -646,31 +653,31 @@ const Sites = ({ enabledSites, setEnabledSites, sites }) => {
     styleInject(css_248z$1);
 
     const LinkList = ({ config, imdbInfo, sites }) => {
-  const metaTagType = document.querySelector('meta[property="og:type"]').getAttribute('content');
+    const metaTagType = document.querySelector('meta[property="og:type"]').getAttribute('content');
 
-  return Object.entries(CATEGORIES).map(([category, categoryName]) => {
-    const catSites = sites.filter(site =>
-      site.categories.includes(category) &&
-      config.enabled_sites.includes(`${site.id}-${category}`) &&
-      (category === 'movie' && metaTagType === 'video.movie' || category === 'tv' && metaTagType === 'video.tv_show')
-    );
+    return Object.entries(CATEGORIES).map(([category, categoryName]) => {
+        const catSites = sites.filter(site => 
+            site.categories.includes(category) && 
+            config.enabled_sites.includes(`${site.id}-${category}`) &&
+            (category === 'movie' && metaTagType === 'video.movie' || category === 'tv' && metaTagType === 'video.tv_show')
+        );
 
-    if (!catSites.length) {
-      return null;
-    }
+        if (!catSites.length) {
+            return null;
+        }
 
-    const caption = config.show_category_captions ? preact.h("h4", { className: css$1.h4 }, categoryName) : null;
-    return preact.h(preact.Fragment, null, caption,
-      preact.h("div", { className: css$1.linkList },
-        catSites.map((site, i) => preact.h(SiteLink, {
-          config: config,
-          imdbInfo: imdbInfo,
-          last: i === catSites.length - 1,
-          site: site
-        }))
-      )
-    );
-  });
+        const caption = config.show_category_captions ? preact.h("h4", { className: css$1.h4 }, categoryName) : null;
+        return preact.h(preact.Fragment, null, caption, 
+            preact.h("div", { className: css$1.linkList }, 
+                catSites.map((site, i) => preact.h(SiteLink, { 
+                    config: config, 
+                    imdbInfo: imdbInfo, 
+                    last: i === catSites.length - 1, 
+                    site: site 
+                }))
+            )
+        );
+    });
 };
 
     var css_248z = ".App_configWrapper__bVP2M {\n  position: absolute;\n  right: 20px;\n  top: 20px;\n}\n\n  .App_configWrapper__bVP2M > button {\n    background: transparent;\n    border: none;\n    cursor: pointer;\n    outline: none;\n    padding: 0;\n}\n\n  .App_configWrapper__bVP2M > button > img {\n      vertical-align: baseline;\n}\n";
