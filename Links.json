@@ -5,7 +5,7 @@
     "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAqFBMVEUAAABwtDkIDwQTMgkWOwwocx0rgCEkZRcJEwApdh4EAAA5iyYIEgQaMg8qTxg0YB0nRRU8bCFQjiscMQ8kPxMGCgNEdiRHeyYaRw8OIQUXNggQKggcTBEdUBI9aSErhSQZQQ1jpjM4XR4gWRUMGABorTYudhwpahpShysiRhBGkyphnTFWnS1FfyIcNAsxWRVbkih3vDkzUxorQxAZKAk7WRhEZRxCeSX45Xe1AAABG0lEQVQ4jc2S23KCMBCGN1ACCBUIUEWEkgqIxgMeaN//zbp4U6I0Xrb/DDub+T82u0kA/pNcta29Pvl9qqkB70kBP1D7wEK1H7FYDbzNAPR5gt/iBaVDuswW0g45wPx9qRmGSVFmQW1qDvyYfwBYdFXQ1NJtOykNezKxBoBbIQBGXWcAKV1jSjOpBbfqp8wcA1stnBX2UzvGsEJcNRg32w1G7xat9XY6LCEE8t6uP4z97gBpAkcuATNyBmh52RerXGhP5MSkuzkTBnC5YKZ1iF67z8vdSfHbHArlhI/cRjLIWyIeXlQ0BK6C8Ej2j/I6RCIvf9aHwL/fsCVEBFGpxbGb+F/7kSfWiYpUgqEE+2WoMG/QboJo3P4zfQNyahSuxxuKRQAAAABJRU5ErkJggg==",
     "url": "https://yts.mx/browse-movies/tt{{IMDB_ID}}",
     "noResultsMatcher": "did not match any movies.",
-    "categories": ["movie"]
+    "category": "movie"
   },
   {
     "id": "wsm",
