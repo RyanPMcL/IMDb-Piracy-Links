@@ -157,7 +157,7 @@
         setQ
     }) => preact.h("div", {
         className: css$5.searchInput
-    }, preact.h("span", null, "\uD83D\uDD0D"), preact.h("input", {
+    }, preact.h("span", null), preact.h("input", {
         onInput: e => {
             setQ(e.target.value.toLowerCase().trim());
         },
@@ -372,7 +372,7 @@
             target: "_blank",
             rel: "noreferrer",
             href: HOMEPAGE
-        }, "\uD83C\uDFA5 ", NAME_VERSION))), preact.h("div", {
+        }, NAME_VERSION))), preact.h("div", {
             className: css$3.body
         }, tabs.map(({
             comp
