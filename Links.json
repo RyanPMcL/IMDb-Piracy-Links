@@ -34,6 +34,7 @@
     "title": "TorrentGalaxy",
     "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAeFBMVEVHcExhZBDFyCG5uyDDxiHEyCClqhmAghZISQ1ISAzBxCHap0yhphpcXRCTlRl0ew/Axx+WnRVncAnUp0fFpTrLoETwxDXaujrLuTG2py3eplClmCjHySTUrUPdp0+NjhqwnyvgwTDRsj3rxDPouD/1xDfgplLhplNP/oMCAAAAJXRSTlMAOQkWITFCBAwYD9hQJyVLSDRataPI8aF6bvd/YZDqaovATdzynlru1QAAAelJREFUOI1lk9uaqyAMhUdA5CRCtZ5PtV/h/d9wAo5W9143KvlZiQn8/BzKsuzyer6fSwihYzVD8esWR0KINBUInhAjG4HnlUACk2kimJA0JQTjrdwIFl8CYUJlCVFjxnE0AG39RMhJQHybpU3N2NSfT/1uAelcmR5EJsgmXUfN+PpE1Y2htPwSiKRPLxU1f3EgWkO73rUpRsEAp63zlTJtfQCfl6FK+tkQEQ2odP2gVHPGP++RqtK7KcUZVAAGru/oFagBqLyThiDIQIGd78B7B1ynxZ4hAPRag6I0AJMFQKvZeUhh1fcvVmqDr68s3gFgYak7+lApaxX4RoDtQEm1LpbqXdf1a12stt3sTgcJ2aTSOi8ey7AOS5FoTSfY5VYAMh2yOddazfOkACU5x5qGXX0HRWbcrgGQlAjGeZ5zzlhoLmQAWwZ9sEsf7FqYDYuCw2FkAKpCwzCYLp7BYh5TOCpYYAznoglb3JBwGCfiyRA/ZTgHUXvcP4ucAZCxvAgVQU1l2UxT05TSHQYsjJuBRR8If8hdDXaLyv0rLxcw+AN48qicv4W9HA6DaJE8VvlN4X1fLkXODyASxWOonn8q1+WRXOIxS0BOFck9DlczdDk5BQ1n7H5/AQHmEPT7v/sd73wWZ3G7/b+chEOx9rufEwAAAABJRU5ErkJggg==",
     "url": "https://torrentgalaxy.to/torrents.php?search=tt{{IMDB_ID}}#results",
+    "noResultsMatcher": "Sorry. No results found...",
     "category": "tv"
   }
 ]
