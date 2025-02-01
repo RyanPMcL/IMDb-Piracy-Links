@@ -1,10 +1,12 @@
 // ==UserScript==
 // @name        IMDb: Piracy Links - Alpha
 // @description A script to easily access piracy related links on IMDb pages.
-// @version     Alpha-3
+// @version     Alpha-3.1
 // @author      Ryan McLaughlin
-// @namespace   https://github.com/RyanPMcL/IMDb-Piracy-Links
-// @match       *://*.imdb.com/title/tt*/*
+// @namespace   https://ryan-mclaughlin.ca
+// @updateURL   https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/IMDbLEA_Ryan.js
+// @downloadURL https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/IMDbLEA_Ryan.js
+// @match       *://*.imdb.com/title/tt*/
 // @connect     *
 // @require     https://greasemonkey.github.io/gm4-polyfill/gm4-polyfill.js
 // @require     https://unpkg.com/preact@10.5.7/dist/preact.umd.js
@@ -15,29 +17,20 @@
 // @grant       GM.getValue
 // @grant       GM.setValue
 // @grant       GM.xmlHttpRequest
-// @downloadURL https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/IMDbLEA_Ryan.js
-// @updateURL https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/IMDbLEA_Ryan.js
 // ==/UserScript==
 
 (function (preact, hooks) {
   "use strict";
-
-  var version = "Alpha-3";
-  var homepage = "https://github.com/RyanPMcL/IMDb-Piracy-Links#readme";
-
   const DESCRIPTION = "A script to easily access piracy related links on IMDb pages.";
-  const HOMEPAGE = homepage;
-  const NAME_VERSION = `Piracy Links v${version}`;
-  const SITES_URL =
-    "https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/Links.json";
+  const HOMEPAGE = "https://github.com/RyanPMcL/IMDb-Piracy-Links#readme";
+  const VERSION = "Piracy Links vAlpha-3.1";
+  const SITES_URL = "https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/Links.json";
   const GM_CONFIG_KEY = "config";
-  const GREASYFORK_URL = "";
   const DEFAULT_CONFIG = {
     enabled_sites: [],
     fetch_results: true,
-    first_run: true,
     open_blank: true,
-    show_category_captions: true,
+    show_category_captions: true
   };
   const CATEGORIES = {
     movie: "Movies",
@@ -333,14 +326,7 @@
       preact.h(
         "div",
         { className: css$5.searchBar },
-        preact.h(SearchInput, { q: q, setQ: setQ }),
-        preact.h(
-          "div",
-          { className: css$5.resultCount },
-          "Showing ",
-          preact.h("span", null, total),
-          " sites."
-        )
+        preact.h(SearchInput, { q: q, setQ: setQ })
       ),
       preact.h("div", { className: css$5.siteList }, cats)
     );
@@ -361,7 +347,7 @@
       {
         className: css$4.about,
       },
-      preact.h("h2", null, NAME_VERSION),
+      preact.h("h2", null, VERSION),
       preact.h("p", null, DESCRIPTION),
       preact.h("h2", null, "License"),
       preact.h(
@@ -501,7 +487,7 @@
                 rel: "noreferrer",
                 href: HOMEPAGE,
               },
-              NAME_VERSION
+              VERSION
             )
           )
         ),
