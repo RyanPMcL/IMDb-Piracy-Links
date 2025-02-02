@@ -1,16 +1,15 @@
 // ==UserScript==
 // @name        IMDb: Piracy Links - Alpha
 // @description A script to easily access piracy related links on IMDb pages.
-// @version     Alpha-3.3
+// @version     Alpha-3.3.1
 // @author      Ryan McLaughlin
 // @namespace   https://ryan-mclaughlin.ca
 // @updateURL   https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/IMDbLEA_Ryan.js
 // @downloadURL https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/IMDbLEA_Ryan.js
 // @match       *://*.imdb.com/title/tt*/
 // @connect     *
-// @require     https://greasemonkey.github.io/gm4-polyfill/gm4-polyfill.js
-// @require     https://unpkg.com/preact@10.5.7/dist/preact.umd.js
-// @require     https://unpkg.com/preact@10.5.7/hooks/dist/hooks.umd.js
+// @require     https://unpkg.com/preact@10.25.4/dist/preact.umd.js
+// @require     https://unpkg.com/preact@10.25.4/hooks/dist/hooks.umd.js
 // @grant       GM.getValue
 // @grant       GM.setValue
 // @grant       GM.xmlHttpRequest
@@ -18,7 +17,6 @@
 
 (function (preact, hooks) {
   "use strict";
-  const SITES_URL = "https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/Links.json";
   const GM_CONFIG_KEY = "config";
   const DEFAULT_CONFIG = {
     enabled_sites: [],
