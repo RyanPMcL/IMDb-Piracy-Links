@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name        IMDb Piracy Links
 // @description A script to easily access piracy related links on IMDb pages.
-// @version     Alpha-4.1
+// @version     Alpha-4.2
 // @author      Ryan McLaughlin
 // @namespace   https://ryan-mclaughlin.ca
-// @updateURL   https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/IMDbPL.js
-// @downloadURL https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/IMDbPL.js
+// @updateURL   https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/IMDbPL.user.js
+// @downloadURL https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/IMDbPL.user.js
 // @match       *://*.imdb.com/title/tt*/
 // @connect     *
 // @require     https://unpkg.com/preact@10.25.4/dist/preact.umd.js
