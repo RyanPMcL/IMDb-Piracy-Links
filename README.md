@@ -7,7 +7,7 @@
 [![Install IMDbPL](https://img.shields.io/badge/IMDbPL-Install-gold?style=flat-square)](https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/IMDbPL.user.js)
 [![GitHub License](https://img.shields.io/github/license/RyanPMcL/IMDb-Piracy-Links?style=flat-square)](https://github.com/RyanPMcL/IMDb-Piracy-Links/blob/main/LICENSE)
 
-Install to your prefered userscript manager, or get [TamperMonkey](https://www.tampermonkey.net/).
+Install to your preferred userscript manager, or get [TamperMonkey](https://www.tampermonkey.net/).
 
 A userscript to easily access public torrenting links on IMDb pages.
 
