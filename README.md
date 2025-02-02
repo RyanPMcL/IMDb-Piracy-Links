@@ -11,6 +11,7 @@ A userscript to easily access public torrenting links on IMDb pages.
 |Mobile Support|✅|❌|
 |Optimized for Newer<br>Userscript Platforms|✅|❌|
 |Support for Legacy<br>Userscript Platforms|❌|✅|
+|Only Public Links<br>for Ease of Use|✅|❌|
 
 Credit to [buzz](https://github.com/buzz) for creating [IMDb: Link 'em all!](https://github.com/buzz/imdb-link-em-all), the original script this project has been derived from.
 
