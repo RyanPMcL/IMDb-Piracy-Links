@@ -269,7 +269,7 @@
     );
 
     const total = catSites.reduce((acc, s) => acc + s.length, 0);
-    const missing = () => window.open("https://github.com/RyanPMcL/IMDb-Piracy-Links/issues", '_blank').focus();
+    const missing = () => window.open("https://github.com/RyanPMcL/IMDb-Piracy-Links/issues/new?template=link_reqeust.yml", '_blank').focus();
     return preact.h(
       preact.Fragment,
       null,
