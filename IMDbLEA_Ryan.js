@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        IMDb: Piracy Links - Alpha
 // @description A script to easily access piracy related links on IMDb pages.
-// @version     Alpha-3.2.3
+// @version     Alpha-3.3
 // @author      Ryan McLaughlin
 // @namespace   https://ryan-mclaughlin.ca
 // @updateURL   https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/IMDbLEA_Ryan.js
@@ -11,9 +11,6 @@
 // @require     https://greasemonkey.github.io/gm4-polyfill/gm4-polyfill.js
 // @require     https://unpkg.com/preact@10.5.7/dist/preact.umd.js
 // @require     https://unpkg.com/preact@10.5.7/hooks/dist/hooks.umd.js
-// @grant       GM_getValue
-// @grant       GM_setValue
-// @grant       GM_xmlhttpRequest
 // @grant       GM.getValue
 // @grant       GM.setValue
 // @grant       GM.xmlHttpRequest
@@ -21,9 +18,6 @@
 
 (function (preact, hooks) {
   "use strict";
-  const DESCRIPTION = "A script to easily access piracy related links on IMDb pages.";
-  const HOMEPAGE = "https://github.com/RyanPMcL/IMDb-Piracy-Links#readme";
-  const VERSION = "Piracy Links vAlpha-3.2.3";
   const SITES_URL = "https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/Links.json";
   const GM_CONFIG_KEY = "config";
   const DEFAULT_CONFIG = {
@@ -33,7 +27,7 @@
     show_category_captions: true
   };
   const CATEGORIES = {
-    movie: "Movies",
+    movie: "Movie",
     tv: "TV",
   };
   const FETCH_STATE = {
@@ -262,8 +256,7 @@
         "h4",
         null,
         name,
-        " ",
-        preact.h("span", null, "(", sites.length, ")")
+        " Torrents"
       ),
       siteLabels
     );
@@ -321,8 +314,8 @@
       {
         className: css$4.about,
       },
-      preact.h("h2", null, VERSION),
-      preact.h("p", null, DESCRIPTION),
+      preact.h("h2", null, "Piracy Links v", GM.info.script.version),
+      preact.h("p", null, GM.info.script.description),
       preact.h("h2", null, "License"),
       preact.h(
         "p",
@@ -459,9 +452,9 @@
               {
                 target: "_blank",
                 rel: "noreferrer",
-                href: HOMEPAGE,
+                href: "https://github.com/RyanPMcL/IMDb-Piracy-Links",
               },
-              VERSION
+              GM.info.script.version
             )
           )
         ),
@@ -497,7 +490,7 @@
                 onClick: onClickSave,
                 type: "button",
               },
-              "OK"
+              "Save"
             ),
             preact.h(
               "button",
@@ -885,7 +878,7 @@
     new Promise((resolve, reject) =>
       GM.xmlHttpRequest({
         method: "GET",
-        url: SITES_URL,
+        url: "https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/Links.json",
         nocache: true,
         onload({ response, status, statusText }) {
           if (status === 200) {
@@ -901,7 +894,7 @@
           } else {
             reject(
               new Error(
-                `LTA: Could not load sites (URL=${SITES_URL}): ${status} ${statusText}`
+                `LTA: Could not load sites (URL=${url}): ${status} ${statusText}`
               )
             );
           }
@@ -909,7 +902,7 @@
         onerror({ status, statusText }) {
           reject(
             new Error(
-              `LTA: Could not load sites (URL=${SITES_URL}): ${status} ${statusText}`
+              `LTA: Could not load sites (URL=${url}): ${status} ${statusText}`
             )
           );
         },
