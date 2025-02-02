@@ -1,0 +1,40 @@
+name: Link Request
+description: Request a new link to be added to IMDbPL
+title: Link Request - Site Name Here
+labels: link request
+body:
+- type: iput
+  id: name
+  attributes:
+    label: Site Name
+    placeholder: Github
+  validations:
+     required: true
+- type: input
+  id: URL
+  attributes:
+    label: Site URL/Link
+    placeholder: https://github.com
+  validations:
+    required: true
+- type: dropdown
+  id: category
+  attributes:
+    label: Content Type
+    options:
+      - Movies & Shows
+      - Just Movies
+      - Just TV Shows
+    validations:
+      required: true
+- type: checkboxes
+  id: acknowledgements
+  attributes:
+    label: Acknowledgements
+    options:
+      - label: I confirm that the link is publicly accessible.
+        required: true
+      - label: I confirm that the link is related to torrenting.
+        required: true
+      - label: I confirm that the link is not already in IMDbPL.
+        required: true
