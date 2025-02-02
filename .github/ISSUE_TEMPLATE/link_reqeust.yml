@@ -3,7 +3,7 @@ description: Request a new link to be added to IMDbPL
 title: Link Request - Site Name Here
 labels: link request
 body:
-- type: iput
+- type: input
   id: name
   attributes:
     label: Site Name
