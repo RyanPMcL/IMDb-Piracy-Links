@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name        IMDb: Piracy Links
+// @name        IMDb Piracy Links
 // @description A script to easily access piracy related links on IMDb pages.
-// @version     Alpha-4
+// @version     Alpha-4.1
 // @author      Ryan McLaughlin
 // @namespace   https://ryan-mclaughlin.ca
 // @updateURL   https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/IMDbPL.js
@@ -150,25 +150,10 @@
       preact.h("span", null),
       preact.h("input", {
         onInput: (e) => {
-          setQ(e.target.value.toLowerCase().trim());
+          setQ(e.target.value.trim());
         },
-        placeholder: "Search",
-        value: q,
-      }),
-      preact.h(
-        "button",
-        {
-          style: {
-            display: q.length ? "unset" : "none",
-          },
-          title: "Clear",
-          type: "button",
-          onClick: () => setQ(""),
-        },
-        preact.h(Icon, {
-          type: "img$fail",
-        })
-      )
+        placeholder: "Search"
+      })
     );
   const DummyIcon = ({ size }) => {
     const sizePx = `${size}px`;
@@ -266,7 +251,7 @@
     const catSites = Object.keys(CATEGORIES).map((cat) => {
       const s = sites.filter((site) => site.category.includes(cat));
       if (q.length) {
-        return s.filter((site) => site.title.toLowerCase().includes(q));
+        return s.filter((site) => site.title.toLowerCase().includes(q.toLowerCase()));
       }
       return s;
     });
@@ -284,15 +269,16 @@
     );
 
     const total = catSites.reduce((acc, s) => acc + s.length, 0);
-
+    const missing = () => window.open("https://github.com/RyanPMcL/IMDb-Piracy-Links/issues", '_blank').focus();
     return preact.h(
       preact.Fragment,
       null,
       preact.h(
         "div",
         { className: css$5.searchBar },
-        preact.h(SearchInput, { q: q, setQ: setQ })
+        preact.h(SearchInput, { q: q, setQ: setQ }),
       ),
+      preact.h("button",{onClick: missing, style: {display: total ? 'none' : 'unset', width: "100%", "font-size": "180%"},type: "button"},"Site Missing?"),
       preact.h("div", { className: css$5.siteList }, cats)
     );
   };
