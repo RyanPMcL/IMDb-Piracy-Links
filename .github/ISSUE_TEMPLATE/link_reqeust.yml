@@ -25,8 +25,8 @@ body:
       - Movies & Shows
       - Just Movies
       - Just TV Shows
-    validations:
-      required: true
+  validations:
+    required: true
 - type: checkboxes
   id: acknowledgements
   attributes:
