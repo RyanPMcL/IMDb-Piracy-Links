@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        IMDb Piracy Links
 // @description A script to easily access piracy related links on IMDb pages.
-// @version     Alpha-4.3
+// @version     Alpha-4.4
 // @author      Ryan McLaughlin
 // @namespace   https://ryan-mclaughlin.ca
 // @updateURL   https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/IMDbPL.user.js
@@ -31,7 +31,10 @@
   const FETCH_STATE = {
     LOADING: 0,
     NO_RESULTS: 1,
-    RESULTS_FOUND: 2
+    RESULTS_FOUND: 2,
+    NO_ACCESS: 3,
+    TIMEOUT: 4,
+    ERROR: 5,
   };
   
   const imgs = {
@@ -39,6 +42,9 @@
     img$load: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ij48cGF0aCBkPSJNMCA4YTggOCAwIDEgMSAxNiAwQTggOCAwIDAgMSAwIDhabTgtNi41YTYuNSA2LjUgMCAxIDAgMCAxMyA2LjUgNi41IDAgMCAwIDAtMTNaIj48L3BhdGg+PC9zdmc+",
     img$success: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ij48cGF0aCBkPSJNOCAxNkE4IDggMCAxIDEgOCAwYTggOCAwIDAgMSAwIDE2Wm0zLjc4LTkuNzJhLjc1MS43NTEgMCAwIDAtLjAxOC0xLjA0Mi43NTEuNzUxIDAgMCAwLTEuMDQyLS4wMThMNi43NSA5LjE5IDUuMjggNy43MmEuNzUxLjc1MSAwIDAgMC0xLjA0Mi4wMTguNzUxLjc1MSAwIDAgMC0uMDE4IDEuMDQybDIgMmEuNzUuNzUgMCAwIDAgMS4wNiAwWiI+PC9wYXRoPjwvc3ZnPg==",
     img$fail: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ij48cGF0aCBkPSJNMi4zNDMgMTMuNjU3QTggOCAwIDEgMSAxMy42NTggMi4zNDMgOCA4IDAgMCAxIDIuMzQzIDEzLjY1N1pNNi4wMyA0Ljk3YS43NTEuNzUxIDAgMCAwLTEuMDQyLjAxOC43NTEuNzUxIDAgMCAwLS4wMTggMS4wNDJMNi45NCA4IDQuOTcgOS45N2EuNzQ5Ljc0OSAwIDAgMCAuMzI2IDEuMjc1Ljc0OS43NDkgMCAwIDAgLjczNC0uMjE1TDggOS4wNmwxLjk3IDEuOTdhLjc0OS43NDkgMCAwIDAgMS4yNzUtLjMyNi43NDkuNzQ5IDAgMCAwLS4yMTUtLjczNEw5LjA2IDhsMS45Ny0xLjk3YS43NDkuNzQ5IDAgMCAwLS4zMjYtMS4yNzUuNzQ5Ljc0OSAwIDAgMC0uNzM0LjIxNUw4IDYuOTRaIj48L3BhdGg+PC9zdmc+",
+    img$warn: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ij48cGF0aCBkPSJNNi40NTcgMS4wNDdjLjY1OS0xLjIzNCAyLjQyNy0xLjIzNCAzLjA4NiAwbDYuMDgyIDExLjM3OEExLjc1IDEuNzUgMCAwIDEgMTQuMDgyIDE1SDEuOTE4YTEuNzUgMS43NSAwIDAgMS0xLjU0My0yLjU3NVpNOCA1YS43NS43NSAwIDAgMC0uNzUuNzV2Mi41YS43NS43NSAwIDAgMCAxLjUgMHYtMi41QS43NS43NSAwIDAgMCA4IDVabTEgNmExIDEgMCAxIDAtMiAwIDEgMSAwIDAgMCAyIDBaIj48L3BhdGg+PC9zdmc+",
+    img$restriced: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ij48cGF0aCBkPSJNMCA4YTggOCAwIDEgMSAxNiAwQTggOCAwIDAgMSAwIDhabTExLjMzMy0yLjE2N2EuODI1LjgyNSAwIDAgMC0xLjE2Ni0xLjE2NmwtNS41IDUuNWEuODI1LjgyNSAwIDAgMCAxLjE2NiAxLjE2NloiPjwvcGF0aD48L3N2Zz4=",
+    img$timeout: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ij48cGF0aCBkPSJNMCA4YTggOCAwIDEgMSAxNiAwQTggOCAwIDAgMSAwIDhabTguNTc1LTMuMjVhLjgyNS44MjUgMCAxIDAtMS42NSAwdjMuNWMwIC4zMzcuMjA1LjY0LjUxOS43NjZsMi41IDFhLjgyNS44MjUgMCAwIDAgLjYxMi0xLjUzMmwtMS45ODEtLjc5M1oiPjwvcGF0aD48L3N2Zz4=",
     img$info: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ij48cGF0aCBkPSJNMCA4YTggOCAwIDEgMSAxNiAwQTggOCAwIDAgMSAwIDhabTgtNi41YTYuNSA2LjUgMCAxIDAgMCAxMyA2LjUgNi41IDAgMCAwIDAtMTNaTTYuNSA3Ljc1QS43NS43NSAwIDAgMSA3LjI1IDdoMWEuNzUuNzUgMCAwIDEgLjc1Ljc1djIuNzVoLjI1YS43NS43NSAwIDAgMSAwIDEuNWgtMmEuNzUuNzUgMCAwIDEgMC0xLjVoLjI1di0yaC0uMjVhLjc1Ljc1IDAgMCAxLS43NS0uNzVaTTggNmExIDEgMCAxIDEgMC0yIDEgMSAwIDAgMSAwIDJaIj48L3BhdGg+PC9zdmc+",
     img$globe: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ij48cGF0aCBkPSJNOCAwYTggOCAwIDEgMSAwIDE2QTggOCAwIDAgMSA4IDBaTTUuNzggOC43NWE5LjY0IDkuNjQgMCAwIDAgMS4zNjMgNC4xNzdjLjI1NS40MjYuNTQyLjgzMi44NTcgMS4yMTUuMjQ1LS4yOTYuNTUxLS43MDUuODU3LTEuMjE1QTkuNjQgOS42NCAwIDAgMCAxMC4yMiA4Ljc1Wm00LjQ0LTEuNWE5LjY0IDkuNjQgMCAwIDAtMS4zNjMtNC4xNzdjLS4zMDctLjUxLS42MTItLjkxOS0uODU3LTEuMjE1YTkuOTI3IDkuOTI3IDAgMCAwLS44NTcgMS4yMTVBOS42NCA5LjY0IDAgMCAwIDUuNzggNy4yNVptLTUuOTQ0IDEuNUgxLjU0M2E2LjUwNyA2LjUwNyAwIDAgMCA0LjY2NiA1LjVjLS4xMjMtLjE4MS0uMjQtLjM2NS0uMzUyLS41NTItLjcxNS0xLjE5Mi0xLjQzNy0yLjg3NC0xLjU4MS00Ljk0OFptLTIuNzMzLTEuNWgyLjczM2MuMTQ0LTIuMDc0Ljg2Ni0zLjc1NiAxLjU4LTQuOTQ4LjEyLS4xOTcuMjM3LS4zODEuMzUzLS41NTJhNi41MDcgNi41MDcgMCAwIDAtNC42NjYgNS41Wm0xMC4xODEgMS41Yy0uMTQ0IDIuMDc0LS44NjYgMy43NTYtMS41OCA0Ljk0OC0uMTIuMTk3LS4yMzcuMzgxLS4zNTMuNTUyYTYuNTA3IDYuNTA3IDAgMCAwIDQuNjY2LTUuNVptMi43MzMtMS41YTYuNTA3IDYuNTA3IDAgMCAwLTQuNjY2LTUuNWMuMTIzLjE4MS4yNC4zNjUuMzUzLjU1Mi43MTQgMS4xOTIgMS40MzYgMi44NzQgMS41OCA0Ljk0OFoiPjwvcGF0aD48L3N2Zz4=",
   };
@@ -190,6 +196,13 @@
       site.title
     );
     const extraIcons = [
+      site.noAccessMatcher
+        ? preact.h(Icon, {
+            className: css$5.extraIcon,
+            title: "Access restricted",
+            type: "img$restriced",
+          })
+        : null,
       site.noResultsMatcher
         ? preact.h(Icon, {
             className: css$5.extraIcon,
@@ -505,6 +518,37 @@
       .replace(new RegExp("{{IMDB_YEAR}}", "g"), year);
 
   const checkResponse = (resp, site) => {
+    // Likely a redirect to login page
+    if (
+      resp.responseHeaders &&
+      resp.responseHeaders.includes("Refresh: 0; url=")
+    ) {
+      return FETCH_STATE.NO_ACCESS;
+    }
+
+    // There should be a responseText
+    if (!resp.responseText) {
+      return FETCH_STATE.ERROR;
+    }
+
+    // Detect CloudFlare anti DDOS page
+    if (resp.responseText.includes("Checking your browser before accessing")) {
+      return FETCH_STATE.NO_ACCESS;
+    }
+
+    // Check site access
+    if (site.noAccessMatcher) {
+      const matchStrings = Array.isArray(site.noAccessMatcher)
+        ? site.noAccessMatcher
+        : [site.noAccessMatcher];
+      if (
+        matchStrings.some((matchString) =>
+          resp.responseText.includes(matchString)
+        )
+      ) {
+        return FETCH_STATE.NO_ACCESS;
+      }
+    }
     // Check results
     if (Array.isArray(site.noResultsMatcher)) {
       // Advanced ways of checking, currently only EL_COUNT is supported
@@ -512,11 +556,29 @@
       const m = resp.responseHeaders.match(/content-type:\s([^\s;]+)/);
       const contentType = m ? m[1] : "text/html";
       let doc;
+      try {
+        const parser = new DOMParser();
+        doc = parser.parseFromString(resp.responseText, contentType);
+      } catch (e) {
+        console.error("Could not parse document!");
+        return FETCH_STATE.ERROR;
+      }
       switch (checkType) {
         case "EL_COUNT": {
           let result;
+          try {
+            result = doc.querySelectorAll(selector);
+          } catch (err) {
+            console.error(err);
+            return FETCH_STATE.ERROR;
+          }
           if (compType === "GT") {
             if (result.length > number) {
+              return FETCH_STATE.RESULTS_FOUND;
+            }
+          }
+          if (compType === "LT") {
+            if (result.length < number) {
               return FETCH_STATE.RESULTS_FOUND;
             }
           }
@@ -545,6 +607,17 @@
         // Site supports result fetching
         const { url } = site;
         const isPost = Array.isArray(url);
+        const opts = {
+          timeout: 20000,
+          onload: (resp) => setFetchState(checkResponse(resp, site)),
+          onerror: (resp) => {
+            console.error(
+              `Failed to fetch results from URL '${url}': ${resp.statusText}`
+            );
+            setFetchState(FETCH_STATE.ERROR);
+          },
+          ontimeout: () => setFetchState(FETCH_STATE.TIMEOUT),
+        };
         if (isPost) {
           const [postUrl, fields] = url;
           opts.method = "POST";
@@ -598,6 +671,18 @@
       case FETCH_STATE.RESULTS_FOUND:
         iconType = "img$success";
         title = "Results found!";
+        break;
+      case FETCH_STATE.NO_ACCESS:
+        iconType = "img$restriced";
+        title = "You have to login to this site!";
+        break;
+      case FETCH_STATE.TIMEOUT:
+        iconType = "img$timeout";
+        title = "You have to login to this site!";
+        break;
+      case FETCH_STATE.ERROR:
+        iconType = "img$warn";
+        title = "Error fetching results! (See dev console for details)";
         break;
       default:
         return null;
