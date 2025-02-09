@@ -6,7 +6,7 @@
 // @namespace   https://ryan-mclaughlin.ca
 // @updateURL   https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/IMDbPL.user.js
 // @downloadURL https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/IMDbPL.user.js
-// @match       *://*.imdb.com/title/tt*/
+// @match       *://*.imdb.com/title/tt*
 // @connect     *
 // @require     https://unpkg.com/preact@10.25.4/dist/preact.umd.js
 // @require     https://unpkg.com/preact@10.25.4/hooks/dist/hooks.umd.js
