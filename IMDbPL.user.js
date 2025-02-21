@@ -317,10 +317,9 @@
     );
 
   var css_248z$3 =
-    '.Config_popover__qMfu9 {\n  background-color: #a5a5a5;\n  border-radius: 4px;\n  box-shadow: 0 0 2em rgba(0, 0, 0, 0.1);\n  color: #333;\n  display: block;\n  font-family: Verdana, Arial, sans-serif;\n  font-size: 11px;\n  left: calc(-390px + 35px);\n  line-height: 1.5rem;\n  padding: 10px;\n  position: absolute;\n  top: calc(20px + 8px);\n  white-space: nowrap;\n  width: 390px;\n  z-index: 100;\n}\n.Config_popover__qMfu9.Config_layout-legacy__M6fyd {\n    left: calc(-800px + 235px);\n}\n.Config_popover__qMfu9.Config_layout-legacy__M6fyd:before {\n      right: calc(235px - 2 * 8px);\n}\n.Config_popover__qMfu9:before {\n    border-bottom: 8px solid #a5a5a5;\n    border-left: 8px solid transparent;\n    border-right: 8px solid transparent;\n    border-top: 8px solid transparent;\n    content: "";\n    display: block;\n    height: 8px;\n    right: calc(35px - 2 * 8px);\n    position: absolute;\n    top: calc(-2 * 8px);\n    width: 0;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK {\n    display: flex;\n    flex-direction: column;\n    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 {\n      display: flex;\n      flex-direction: row;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 .Config_link__GTbGq {\n        flex-grow: 1;\n        text-align: right;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 .Config_link__GTbGq > a {\n          color: #333;\n          margin-left: 12px;\n          margin-right: 4px;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 .Config_link__GTbGq > a:visited {\n            color: #333;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 > button {\n        background-color: rgba(0, 0, 0, 0.05);\n        border-bottom-left-radius: 0;\n        border-bottom-right-radius: 0;\n        border-bottom: transparent;\n        border-left: 1px solid rgba(0, 0, 0, 0.25);\n        border-right: 1px solid rgba(0, 0, 0, 0.25);\n        border-top-left-radius: 2px;\n        border-top-right-radius: 2px;\n        border-top: 1px solid rgba(0, 0, 0, 0.25);\n        color: #424242;\n        font-size: 12px;\n        margin: 0 6px 0 0;\n        outline: none;\n        padding: 0 6px;\n        transform: translateY(1px);\n        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 > button:hover {\n          background-color: rgba(0, 0, 0, 0.1);\n          color: #222;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 > button.Config_active__vD-Fl {\n          background-color: #c2c2c2;\n          color: #222;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 > button:last-child {\n          margin-right: 0;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 > button > img {\n          vertical-align: text-bottom;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_body__wtDKH {\n      background-color: #c2c2c2;\n      border-bottom-left-radius: 2px;\n      border-bottom-right-radius: 2px;\n      border-top-right-radius: 2px;\n      border: 1px solid rgba(0, 0, 0, 0.25);\n      padding: 12px 10px 12px;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_body__wtDKH > div {\n        overflow: hidden;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_body__wtDKH > div > *:first-child {\n          margin-top: 0;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_body__wtDKH > div > *:last-child {\n          margin-bottom: 0;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_controls__-N2ev {\n      display: flex;\n      flex-direction: row;\n      margin-top: 10px;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_controls__-N2ev > div:first-child {\n        flex-grow: 1;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_controls__-N2ev button {\n        padding-bottom: 0;\n        padding-top: 0;\n        margin-right: 12px;\n}\n';
+    '.Config_popover__qMfu9 {\n  background-color: #a5a5a5;\n  border-radius: 4px;\n  box-shadow: 0 0 2em rgba(0, 0, 0, 0.1);\n  color: #333;\n  display: block;\n  font-family: Verdana, Arial, sans-serif;\n  font-size: 11px;\n  left: calc(-390px + 35px);\n  line-height: 1.5rem;\n  padding: 10px;\n  position: absolute;\n  top: calc(20px + 8px);\n  white-space: nowrap;\n  width: 390px;\n  z-index: 100;\n}\n.Config_popover__qMfu9:before {\n    border-bottom: 8px solid #a5a5a5;\n    border-left: 8px solid transparent;\n    border-right: 8px solid transparent;\n    border-top: 8px solid transparent;\n    content: "";\n    display: block;\n    height: 8px;\n    right: calc(35px - 2 * 8px);\n    position: absolute;\n    top: calc(-2 * 8px);\n    width: 0;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK {\n    display: flex;\n    flex-direction: column;\n    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 {\n      display: flex;\n      flex-direction: row;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 .Config_link__GTbGq {\n        flex-grow: 1;\n        text-align: right;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 .Config_link__GTbGq > a {\n          color: #333;\n          margin-left: 12px;\n          margin-right: 4px;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 .Config_link__GTbGq > a:visited {\n            color: #333;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 > button {\n        background-color: rgba(0, 0, 0, 0.05);\n        border-bottom-left-radius: 0;\n        border-bottom-right-radius: 0;\n        border-bottom: transparent;\n        border-left: 1px solid rgba(0, 0, 0, 0.25);\n        border-right: 1px solid rgba(0, 0, 0, 0.25);\n        border-top-left-radius: 2px;\n        border-top-right-radius: 2px;\n        border-top: 1px solid rgba(0, 0, 0, 0.25);\n        color: #424242;\n        font-size: 12px;\n        margin: 0 6px 0 0;\n        outline: none;\n        padding: 0 6px;\n        transform: translateY(1px);\n        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 > button:hover {\n          background-color: rgba(0, 0, 0, 0.1);\n          color: #222;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 > button.Config_active__vD-Fl {\n          background-color: #c2c2c2;\n          color: #222;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 > button:last-child {\n          margin-right: 0;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_top__6DKJ8 > button > img {\n          vertical-align: text-bottom;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_body__wtDKH {\n      background-color: #c2c2c2;\n      border-bottom-left-radius: 2px;\n      border-bottom-right-radius: 2px;\n      border-top-right-radius: 2px;\n      border: 1px solid rgba(0, 0, 0, 0.25);\n      padding: 12px 10px 12px;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_body__wtDKH > div {\n        overflow: hidden;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_body__wtDKH > div > *:first-child {\n          margin-top: 0;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_body__wtDKH > div > *:last-child {\n          margin-bottom: 0;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_controls__-N2ev {\n      display: flex;\n      flex-direction: row;\n      margin-top: 10px;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_controls__-N2ev > div:first-child {\n        flex-grow: 1;\n}\n.Config_popover__qMfu9 .Config_inner__oVRAK .Config_controls__-N2ev button {\n        padding-bottom: 0;\n        padding-top: 0;\n        margin-right: 12px;\n}\n';
   var css$3 = {
     popover: "Config_popover__qMfu9",
-    "layout-legacy": "Config_layout-legacy__M6fyd",
     inner: "Config_inner__oVRAK",
     top: "Config_top__6DKJ8",
     link: "Config_link__GTbGq",
@@ -913,7 +912,6 @@
     return preact.h(
       preact.Fragment,
       null,
-      imdbInfo.layout === "legacy" ? preact.h("hr", null) : null,
       preact.h(
         "div",
         {
@@ -948,23 +946,8 @@
   };
 
   const divId = "__LTA__";
-  const detectLayout = (mUrl) => {
-    // Currently there seem to be 3 different IMDb layouts:
-    // 1) "legacy": URL ends with '/reference'
-    if (["reference", "combined"].includes(mUrl[2])) {
-      return [
-        "legacy",
-        "h3[itemprop=name]",
-        ".titlereference-section-overview > *:last-child",
-      ];
-    }
-    // 2) "redesign2020": Redesign 2020
-    //    https://www.imdb.com/preferences/beta-control?e=tmd&t=in&u=/title/tt0163978/
-    if (document.querySelector("main section > .ipc-page-content-container")) {
-      return ["redesign2020", "title", "main > * > section > div"];
-    }
-    // 3) "new": The old default (has been around for many years)
-    return ["new", "h1", ".title-overview"];
+  const detectURL = (mUrl) => {
+    return ["title", "main > * > section > div"];
   };
   const parseImdbInfo = () => {
     // TODO: extract type (TV show, movie, ...)
@@ -973,13 +956,9 @@
     const mUrl = /^\/title\/tt([0-9]{7,8})\/([a-z]*)/.exec(
       window.location.pathname
     );
-    if (!mUrl) {
-      throw new Error("LTA: Could not parse IMDb URL!");
-    }
-    const [layout, titleSelector, containerSelector] = detectLayout(mUrl);
+    const [titleSelector, containerSelector] = detectURL(mUrl);
     const info = {
-      id: mUrl[1],
-      layout,
+      id: mUrl[1]
     };
     info.title = document.querySelector(titleSelector).innerText.trim();
     const mTitle = /^(.+?)(\s+\(.*\d{4}.*\))?(\s+-\s+IMDb)?$/.exec(info.title);
@@ -1003,17 +982,12 @@
     const container = document.createElement("div");
     container.id = divId;
     container.style.position = "relative";
-    if (imdbInfo.layout === "redesign2020") {
-      container.className =
-        "ipc-page-content-container ipc-page-content-container--center";
-      container.style.backgroundColor = "white";
-      container.style.padding = "0 var(--ipt-pageMargin)";
-      container.style.minHeight = "50px";
-      injectionEl.prepend(container);
-    } else {
-      container.classList.add("article");
-      injectionEl.appendChild(container);
-    }
+    container.className =
+      "ipc-page-content-container ipc-page-content-container--center";
+    container.style.backgroundColor = "white";
+    container.style.padding = "0 var(--ipt-pageMargin)";
+    container.style.minHeight = "50px";
+    injectionEl.prepend(container);
     preact.render(
       preact.h(App, {
         imdbInfo: imdbInfo,
