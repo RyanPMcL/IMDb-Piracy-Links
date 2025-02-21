@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        IMDb Piracy Links
 // @description A script to easily access piracy related links on IMDb pages.
-// @version     Alpha-4.4
+// @version     Alpha-5
 // @author      Ryan McLaughlin
 // @namespace   https://ryan-mclaughlin.ca
 // @updateURL   https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/IMDbPL.user.js
@@ -21,8 +21,7 @@
   const DEFAULT_CONFIG = {
     enabled_sites: [],
     fetch_results: true,
-    open_blank: true,
-    show_category_captions: true
+    open_blank: true
   };
   const CATEGORIES = {
     movie: "Movie",
@@ -332,7 +331,6 @@
   styleInject(css_248z$3);
 
   const OPTIONS = [
-    ["show_category_captions", "Show category captions"],
     ["open_blank", "Open links in new tab"],
     ["fetch_results", "Automatically fetch results"],
   ];
@@ -340,16 +338,11 @@
     const [enabledSites, setEnabledSites] = hooks.useState(
       config.enabled_sites
     );
-    const showCategoryCaptionsArr = hooks.useState(
-      config.show_category_captions
-    );
     const openBlankArr = hooks.useState(config.open_blank);
     const fetchResultsArr = hooks.useState(config.fetch_results);
-    const [showCategoryCaptions, setShowCategoryCaptions] =
-      showCategoryCaptionsArr;
     const [openBlank, setOpenBlank] = openBlankArr;
     const [fetchResults, setFetchResults] = fetchResultsArr;
-    const optStates = [showCategoryCaptionsArr, openBlankArr, fetchResultsArr];
+    const optStates = [openBlankArr, fetchResultsArr];
     const options = OPTIONS.map((opt, i) => [...opt, ...optStates[i]]);
     const [tab, setTab] = hooks.useState(0);
     const tabs = [
@@ -381,14 +374,12 @@
       setEnabledSites(config.enabled_sites);
       setFetchResults(config.fetch_results);
       setOpenBlank(config.open_blank);
-      setShowCategoryCaptions(config.show_category_captions);
     };
     const onClickSave = () => {
       setConfig({
         enabled_sites: enabledSites,
         fetch_results: fetchResults,
         open_blank: openBlank,
-        show_category_captions: showCategoryCaptions,
       });
       setShow(false);
     };
@@ -808,13 +799,10 @@
         return null;
       }
 
-      const caption = config.show_category_captions
-        ? preact.h("h4", { className: css$1.h4 }, categoryName)
-        : null;
       return preact.h(
         preact.Fragment,
         null,
-        caption,
+        preact.h("h4", { className: css$1.h4 }, "Piracy Links"),
         preact.h(
           "div",
           { className: css$1.linkList },
