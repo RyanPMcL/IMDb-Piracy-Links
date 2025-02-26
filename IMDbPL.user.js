@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        IMDb Piracy Links
 // @description A script to easily access piracy related links on IMDb pages.
-// @version     Alpha-5.1
+// @version     Alpha-6
 // @author      Ryan McLaughlin
 // @namespace   https://ryan-mclaughlin.ca
 // @updateURL   https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/IMDbPL.user.js
@@ -42,7 +42,7 @@
     img$success: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ij48cGF0aCBkPSJNOCAxNkE4IDggMCAxIDEgOCAwYTggOCAwIDAgMSAwIDE2Wm0zLjc4LTkuNzJhLjc1MS43NTEgMCAwIDAtLjAxOC0xLjA0Mi43NTEuNzUxIDAgMCAwLTEuMDQyLS4wMThMNi43NSA5LjE5IDUuMjggNy43MmEuNzUxLjc1MSAwIDAgMC0xLjA0Mi4wMTguNzUxLjc1MSAwIDAgMC0uMDE4IDEuMDQybDIgMmEuNzUuNzUgMCAwIDAgMS4wNiAwWiI+PC9wYXRoPjwvc3ZnPg==",
     img$fail: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ij48cGF0aCBkPSJNMi4zNDMgMTMuNjU3QTggOCAwIDEgMSAxMy42NTggMi4zNDMgOCA4IDAgMCAxIDIuMzQzIDEzLjY1N1pNNi4wMyA0Ljk3YS43NTEuNzUxIDAgMCAwLTEuMDQyLjAxOC43NTEuNzUxIDAgMCAwLS4wMTggMS4wNDJMNi45NCA4IDQuOTcgOS45N2EuNzQ5Ljc0OSAwIDAgMCAuMzI2IDEuMjc1Ljc0OS43NDkgMCAwIDAgLjczNC0uMjE1TDggOS4wNmwxLjk3IDEuOTdhLjc0OS43NDkgMCAwIDAgMS4yNzUtLjMyNi43NDkuNzQ5IDAgMCAwLS4yMTUtLjczNEw5LjA2IDhsMS45Ny0xLjk3YS43NDkuNzQ5IDAgMCAwLS4zMjYtMS4yNzUuNzQ5Ljc0OSAwIDAgMC0uNzM0LjIxNUw4IDYuOTRaIj48L3BhdGg+PC9zdmc+",
     img$warn: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ij48cGF0aCBkPSJNNi40NTcgMS4wNDdjLjY1OS0xLjIzNCAyLjQyNy0xLjIzNCAzLjA4NiAwbDYuMDgyIDExLjM3OEExLjc1IDEuNzUgMCAwIDEgMTQuMDgyIDE1SDEuOTE4YTEuNzUgMS43NSAwIDAgMS0xLjU0My0yLjU3NVpNOCA1YS43NS43NSAwIDAgMC0uNzUuNzV2Mi41YS43NS43NSAwIDAgMCAxLjUgMHYtMi41QS43NS43NSAwIDAgMCA4IDVabTEgNmExIDEgMCAxIDAtMiAwIDEgMSAwIDAgMCAyIDBaIj48L3BhdGg+PC9zdmc+",
-    img$restriced: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ij48cGF0aCBkPSJNMCA4YTggOCAwIDEgMSAxNiAwQTggOCAwIDAgMSAwIDhabTExLjMzMy0yLjE2N2EuODI1LjgyNSAwIDAgMC0xLjE2Ni0xLjE2NmwtNS41IDUuNWEuODI1LjgyNSAwIDAgMCAxLjE2NiAxLjE2NloiPjwvcGF0aD48L3N2Zz4=",
+    img$restricted: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ij48cGF0aCBkPSJNMCA4YTggOCAwIDEgMSAxNiAwQTggOCAwIDAgMSAwIDhabTExLjMzMy0yLjE2N2EuODI1LjgyNSAwIDAgMC0xLjE2Ni0xLjE2NmwtNS41IDUuNWEuODI1LjgyNSAwIDAgMCAxLjE2NiAxLjE2NloiPjwvcGF0aD48L3N2Zz4=",
     img$timeout: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ij48cGF0aCBkPSJNMCA4YTggOCAwIDEgMSAxNiAwQTggOCAwIDAgMSAwIDhabTguNTc1LTMuMjVhLjgyNS44MjUgMCAxIDAtMS42NSAwdjMuNWMwIC4zMzcuMjA1LjY0LjUxOS43NjZsMi41IDFhLjgyNS44MjUgMCAwIDAgLjYxMi0xLjUzMmwtMS45ODEtLjc5M1oiPjwvcGF0aD48L3N2Zz4=",
     img$info: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ij48cGF0aCBkPSJNMCA4YTggOCAwIDEgMSAxNiAwQTggOCAwIDAgMSAwIDhabTgtNi41YTYuNSA2LjUgMCAxIDAgMCAxMyA2LjUgNi41IDAgMCAwIDAtMTNaTTYuNSA3Ljc1QS43NS43NSAwIDAgMSA3LjI1IDdoMWEuNzUuNzUgMCAwIDEgLjc1Ljc1djIuNzVoLjI1YS43NS43NSAwIDAgMSAwIDEuNWgtMmEuNzUuNzUgMCAwIDEgMC0xLjVoLjI1di0yaC0uMjVhLjc1Ljc1IDAgMCAxLS43NS0uNzVaTTggNmExIDEgMCAxIDEgMC0yIDEgMSAwIDAgMSAwIDJaIj48L3BhdGg+PC9zdmc+",
     img$globe: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ij48cGF0aCBkPSJNOCAwYTggOCAwIDEgMSAwIDE2QTggOCAwIDAgMSA4IDBaTTUuNzggOC43NWE5LjY0IDkuNjQgMCAwIDAgMS4zNjMgNC4xNzdjLjI1NS40MjYuNTQyLjgzMi44NTcgMS4yMTUuMjQ1LS4yOTYuNTUxLS43MDUuODU3LTEuMjE1QTkuNjQgOS42NCAwIDAgMCAxMC4yMiA4Ljc1Wm00LjQ0LTEuNWE5LjY0IDkuNjQgMCAwIDAtMS4zNjMtNC4xNzdjLS4zMDctLjUxLS42MTItLjkxOS0uODU3LTEuMjE1YTkuOTI3IDkuOTI3IDAgMCAwLS44NTcgMS4yMTVBOS42NCA5LjY0IDAgMCAwIDUuNzggNy4yNVptLTUuOTQ0IDEuNUgxLjU0M2E2LjUwNyA2LjUwNyAwIDAgMCA0LjY2NiA1LjVjLS4xMjMtLjE4MS0uMjQtLjM2NS0uMzUyLS41NTItLjcxNS0xLjE5Mi0xLjQzNy0yLjg3NC0xLjU4MS00Ljk0OFptLTIuNzMzLTEuNWgyLjczM2MuMTQ0LTIuMDc0Ljg2Ni0zLjc1NiAxLjU4LTQuOTQ4LjEyLS4xOTcuMjM3LS4zODEuMzUzLS41NTJhNi41MDcgNi41MDcgMCAwIDAtNC42NjYgNS41Wm0xMC4xODEgMS41Yy0uMTQ0IDIuMDc0LS44NjYgMy43NTYtMS41OCA0Ljk0OC0uMTIuMTk3LS4yMzcuMzgxLS4zNTMuNTUyYTYuNTA3IDYuNTA3IDAgMCAwIDQuNjY2LTUuNVptMi43MzMtMS41YTYuNTA3IDYuNTA3IDAgMCAwLTQuNjY2LTUuNWMuMTIzLjE4MS4yNC4zNjUuMzUzLjU1Mi43MTQgMS4xOTIgMS40MzYgMi44NzQgMS41OCA0Ljk0OFoiPjwvcGF0aD48L3N2Zz4=",
@@ -199,7 +199,7 @@
         ? preact.h(Icon, {
             className: css$5.extraIcon,
             title: "Access restricted",
-            type: "img$restriced",
+            type: "img$restricted",
           })
         : null,
       site.noResultsMatcher
@@ -268,7 +268,7 @@
     );
 
     const total = catSites.reduce((acc, s) => acc + s.length, 0);
-    const missing = () => window.open("https://github.com/RyanPMcL/IMDb-Piracy-Links/issues/new?template=link_reqeust.yml", '_blank').focus();
+    const missing = () => window.open("https://github.com/RyanPMcL/IMDb-Piracy-Links/issues/new?template=link_request.yml", '_blank').focus();
     return preact.h(
       preact.Fragment,
       null,
@@ -663,12 +663,12 @@
         title = "Results found!";
         break;
       case FETCH_STATE.NO_ACCESS:
-        iconType = "img$restriced";
+        iconType = "img$restricted";
         title = "You have to login to this site!";
         break;
       case FETCH_STATE.TIMEOUT:
         iconType = "img$timeout";
-        title = "You have to login to this site!";
+        title = "Request timed out!";
         break;
       case FETCH_STATE.ERROR:
         iconType = "img$warn";
@@ -950,32 +950,24 @@
     return ["title", "main > * > section > div"];
   };
   const parseImdbInfo = () => {
-    // TODO: extract type (TV show, movie, ...)
-
-    // Parse IMDb number and layout
-    const mUrl = /^\/title\/tt([0-9]{7,8})\/([a-z]*)/.exec(
-      window.location.pathname
-    );
-    const [titleSelector, containerSelector] = detectURL(mUrl);
-    const info = {
-      id: mUrl[1]
-    };
-    info.title = document.querySelector(titleSelector).innerText.trim();
-    const mTitle = /^(.+?)(\s+\(.*\d{4}.*\))?(\s+-\s+IMDb)?$/.exec(info.title);
-    if (mTitle) {
-      info.title = mTitle[1].trim();
-      if (mTitle[2]) {
-        const yearMatch = /\((\d{4})–?\)/.exec(mTitle[2]);
-        if (yearMatch) {
-          info.year = parseInt(yearMatch[1].trim(), 10);
-        }
+      let info = {};
+      try {
+        const data = JSON.parse(document.getElementById('__NEXT_DATA__').textContent).props.pageProps.aboveTheFoldData;
+        info = {
+          id: data.id.replace('tt',''),
+          title: data.titleText.text,
+          year: data.releaseYear.year,
+        };
+      } catch {
+          if (!info.id) {info.id = window.location.pathname.match(/\d+/)[0]};
+          if (!info.title) {info.title = document.title.match(/(.*)(?:\ \(.*)$/)[1]};
+          if (!info.year) {info.year = document.title.match(/\d+/g).pop()};
       }
-    }
-    return [info, containerSelector];
+      return [info];
   };
-  const [imdbInfo, containerSelector] = parseImdbInfo();
+  const [imdbInfo] = parseImdbInfo();
   const injectAndStart = () => {
-    let injectionEl = document.querySelector(containerSelector);
+    let injectionEl = document.querySelector(detectURL(/^\/title\/tt([0-9]{7,8})\/([a-z]*)/.exec(window.location.pathname))[1]);
     if (!injectionEl) {
       throw new Error("LTA: Could not find target container!");
     }
