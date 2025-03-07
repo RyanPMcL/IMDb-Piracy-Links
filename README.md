@@ -1,5 +1,5 @@
 # IMDb Piracy Links 
-ℹ️ This script is still in ***Early Alpha Stages*** and constantly changing, however, I try to keep it in a ***100% functional*** state at all times!  
+ℹ️ This script is still in development and constantly changing, however, I try to keep it in a ***100% functional*** state at all times!  
 ℹ️ Please feel free to request new torrent website links via a [Github Issue](https://github.com/RyanPMcL/IMDb-Piracy-Links/issues/new?template=link_reqeust.yml), Pull Request or [email](mailto:imdbpl@rymc.ca).
 
 <hr>
