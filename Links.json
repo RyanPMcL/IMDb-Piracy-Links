@@ -36,5 +36,45 @@
     "url": "https://torrentgalaxy.to/torrents.php?search=tt{{IMDB_ID}}#results",
     "noResultsMatcher": "Sorry. No results found...",
     "category": "tv"
+  },
+  {
+    "id": "m-1337x",
+    "title": "1337x",
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB8UlEQVQ4jcWTsWsUYRDF38z37WbvAkJEBIVDREEEETsbG1GwMJXapLSxUEvTRSxEUsVeFALaWIighZg/QRBMEEFEBEE9Qkji5e72dm935lmEmMilS+E0M8384M17IySxl9I9bQOIW8PPqZNX030TdylKB5Kq25lnOZijRmg6dj47eHgWIWZQzer29xeHni7O/AOoB/kHaAyh0TxFUYR07JZX5fParR0b4zdF9SxEwKr0apC/H5HgZt+qvDstdVUqHSFJjyLEK6J6TrPG5Natqu7v+1B9PSIhxAgBFqwsXoroFElo1pxWDesQySCKKu99qnsbjyDiIwDZbKyL/mwI8RKSdH9MsxZDbEmI8HJQD398nbNy0IZs3/7vRDPQDDD7aEX+OIQIiEBjgHfXUXxZelcs/3pW93uouxujLtR5DyChjXFNsmYLIrC8By6vwTqr8Gp4QEQmUFUru9oIcFOHVRe837lmq22wyAEzaJIgJOkJjbxd1/W9nYBtMcMCGJZjWvbv2NpyyrwLd1t0kTc70nqdwDHuBnAzkH6ZxEXRAIrCzB+62Yy59+kOiLQA3CAZRgHkcYg8AKAkQfIzybcUWXLnAkTgZlDVaQEmR3MQwukQQkFyEUDi7k9EZGXTYs67+xGSIcaYDd3PAHgFAPLfv/EPJs4IQHNr/+kAAAAASUVORK5CYII=",
+    "url": "https://1337x.to/category-search/{{IMDB_TITLE}} {{IMDB_YEAR}}/Movies/1/",
+    "noResultsMatcher": "No results were returned.",
+    "category": "movie"
+  },
+  {
+    "id": "t-1337x",
+    "title": "1337x",
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB8UlEQVQ4jcWTsWsUYRDF38z37WbvAkJEBIVDREEEETsbG1GwMJXapLSxUEvTRSxEUsVeFALaWIighZg/QRBMEEFEBEE9Qkji5e72dm935lmEmMilS+E0M8384M17IySxl9I9bQOIW8PPqZNX030TdylKB5Kq25lnOZijRmg6dj47eHgWIWZQzer29xeHni7O/AOoB/kHaAyh0TxFUYR07JZX5fParR0b4zdF9SxEwKr0apC/H5HgZt+qvDstdVUqHSFJjyLEK6J6TrPG5Natqu7v+1B9PSIhxAgBFqwsXoroFElo1pxWDesQySCKKu99qnsbjyDiIwDZbKyL/mwI8RKSdH9MsxZDbEmI8HJQD398nbNy0IZs3/7vRDPQDDD7aEX+OIQIiEBjgHfXUXxZelcs/3pW93uouxujLtR5DyChjXFNsmYLIrC8By6vwTqr8Gp4QEQmUFUru9oIcFOHVRe837lmq22wyAEzaJIgJOkJjbxd1/W9nYBtMcMCGJZjWvbv2NpyyrwLd1t0kTc70nqdwDHuBnAzkH6ZxEXRAIrCzB+62Yy59+kOiLQA3CAZRgHkcYg8AKAkQfIzybcUWXLnAkTgZlDVaQEmR3MQwukQQkFyEUDi7k9EZGXTYs67+xGSIcaYDd3PAHgFAPLfv/EPJs4IQHNr/+kAAAAASUVORK5CYII=",
+    "url": "https://1337x.to/category-search/{{IMDB_TITLE}} {{IMDB_YEAR}}/TV/1/",
+    "noResultsMatcher": "No results were returned.",
+    "category": "tv"
+  },
+  {
+    "id": "m-ext",
+    "title": "EXT",
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAJ1BMVEVHcEwCbL0DbL0CbL0AYLn////v9fvI2e26z+gve8RIichtndGAqdZGTcWIAAAAA3RSTlMAdOrx+nNKAAAAdElEQVQ4jaWTQRaAIAgFQckyvf95e9kiJfT7craMCghE7HwXx0TcD98wDc6XO2gc935eEIUW0qFIrSDbB1kVgiWcFSrJRxiUOSkYbWiF8BJNoSLLLwE+AZNc70OsQFXYn7U0D3lXqJHDQ9sFC3D14PKi9b8AxvkPWqyhD6gAAAAASUVORK5CYII=",
+    "url": "https://ext.to/browse/?imdb_id={{IMDB_ID}}",
+    "noResultsMatcher": "Unfortunately, we couldn't find any torrents that match your search terms.",
+    "category": "movie"
+  },
+  {
+    "id": "t-ext",
+    "title": "EXT",
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAJ1BMVEVHcEwCbL0DbL0CbL0AYLn////v9fvI2e26z+gve8RIichtndGAqdZGTcWIAAAAA3RSTlMAdOrx+nNKAAAAdElEQVQ4jaWTQRaAIAgFQckyvf95e9kiJfT7craMCghE7HwXx0TcD98wDc6XO2gc935eEIUW0qFIrSDbB1kVgiWcFSrJRxiUOSkYbWiF8BJNoSLLLwE+AZNc70OsQFXYn7U0D3lXqJHDQ9sFC3D14PKi9b8AxvkPWqyhD6gAAAAASUVORK5CYII=",
+    "url": "https://ext.to/browse/?imdb_id={{IMDB_ID}}",
+    "noResultsMatcher": "Unfortunately, we couldn't find any torrents that match your search terms.",
+    "category": "tv"
+  },
+  {
+    "id": "t-eztv",
+    "title": "EZTV",
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAV1BMVEX///8Pf/BMf/C3zPk/mfOPw/i/3furw/jP5fwvkPKfzPmv1PofiPFkkPLn7v2UsvbP3ftvsvZfqvXf7v3z9v5YiPGIqvV8ofRPofR/u/dwmfOgu/fb5fxzsQv8AAAAiElEQVQYlWWOWRLDIAxDZbOEELY0W7f7n7OGYdJ0qg/Az9II4F9OE82wVDXKvI4WnszkAR2cANNWN3nNNNWEGXvUkOn3IqfF1FyiJWgH613QMtwrsdLygD5bpCeq3488mSMzJ8XcCSukTVy5fAFeGdhxAWVby3AFiCqnEwyyG47jrNmr5c0t8QHbrgPKevgyIwAAAABJRU5ErkJggg==",
+    "url": "https://eztvx.to/search/tt{{IMDB_ID}}",
+    "noResultsMatcher": "No torrents found!",
+    "category": "tv"
   }
 ]
