@@ -778,9 +778,7 @@
   styleInject(css_248z$1);
 
   const LinkList = ({ config, imdbInfo, sites }) => {
-    const metaTagType = document
-      .querySelector('meta[property="og:type"]')
-      .getAttribute("content");
+    const metaTagType = document.querySelector('meta[property="og:type"]').getAttribute("content");
 
     return Object.entries(CATEGORIES).map(([category, categoryName]) => {
       const catSites = sites.filter(
