@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        IMDb Piracy Links
 // @description A script to easily access piracy related links on IMDb pages.
-// @version     Alpha-6
+// @version     0.1
 // @author      Ryan McLaughlin
 // @namespace   https://ryan-mclaughlin.ca
 // @updateURL   https://raw.githubusercontent.com/RyanPMcL/IMDb-Piracy-Links/refs/heads/main/IMDbPL.user.js
@@ -333,7 +333,7 @@
     ["open_blank", "Open links in new tab"],
     ["fetch_results", "Automatically fetch results"],
   ];
-  const Config = ({ config, layout, setConfig, setShow, show, sites }) => {
+  const Config = ({ config, setConfig, setShow, show, sites }) => {
     const [enabledSites, setEnabledSites] = hooks.useState(
       config.enabled_sites
     );
@@ -385,7 +385,7 @@
     return preact.h(
       "div",
       {
-        className: `${css$3.popover} ${css$3["layout-" + layout]}`,
+        className: `${css$3.popover}`,
         style: {
           display: show ? "block" : "none",
         },
@@ -601,9 +601,6 @@
           timeout: 20000,
           onload: (resp) => setFetchState(checkResponse(resp, site)),
           onerror: (resp) => {
-            console.error(
-              `Failed to fetch results from URL '${url}': ${resp.statusText}`
-            );
             setFetchState(FETCH_STATE.ERROR);
           },
           ontimeout: () => setFetchState(FETCH_STATE.TIMEOUT),
@@ -672,7 +669,7 @@
         break;
       case FETCH_STATE.ERROR:
         iconType = "img$warn";
-        title = "Error fetching results! (See dev console for details)";
+        title = "Error fetching results!";
         break;
       default:
         return null;
@@ -781,9 +778,7 @@
   styleInject(css_248z$1);
 
   const LinkList = ({ config, imdbInfo, sites }) => {
-    const metaTagType = document
-      .querySelector('meta[property="og:type"]')
-      .getAttribute("content");
+    const metaTagType = document.querySelector('meta[property="og:type"]').getAttribute("content");
 
     return Object.entries(CATEGORIES).map(([category, categoryName]) => {
       const catSites = sites.filter(
@@ -930,7 +925,6 @@
         ),
         preact.h(Config, {
           config: config,
-          layout: imdbInfo.layout,
           setConfig: setConfig,
           setShow: setShowConfig,
           sites: sites,
@@ -946,9 +940,6 @@
   };
 
   const divId = "__LTA__";
-  const detectURL = (mUrl) => {
-    return ["title", "main > * > section > div"];
-  };
   const parseImdbInfo = () => {
       let info = {};
       try {
@@ -967,10 +958,7 @@
   };
   const [imdbInfo] = parseImdbInfo();
   const injectAndStart = () => {
-    let injectionEl = document.querySelector(detectURL(/^\/title\/tt([0-9]{7,8})\/([a-z]*)/.exec(window.location.pathname))[1]);
-    if (!injectionEl) {
-      throw new Error("LTA: Could not find target container!");
-    }
+    let injectionEl = document.querySelector("main > * > section > div");
     const container = document.createElement("div");
     container.id = divId;
     container.style.position = "relative";
