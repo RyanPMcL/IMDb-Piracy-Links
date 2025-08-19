@@ -22,22 +22,6 @@
     "category": "tv"
   },
   {
-    "id": "m-tgx",
-    "title": "TorrentGalaxy",
-    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAeFBMVEVHcExhZBDFyCG5uyDDxiHEyCClqhmAghZISQ1ISAzBxCHap0yhphpcXRCTlRl0ew/Axx+WnRVncAnUp0fFpTrLoETwxDXaujrLuTG2py3eplClmCjHySTUrUPdp0+NjhqwnyvgwTDRsj3rxDPouD/1xDfgplLhplNP/oMCAAAAJXRSTlMAOQkWITFCBAwYD9hQJyVLSDRataPI8aF6bvd/YZDqaovATdzynlru1QAAAelJREFUOI1lk9uaqyAMhUdA5CRCtZ5PtV/h/d9wAo5W9143KvlZiQn8/BzKsuzyer6fSwihYzVD8esWR0KINBUInhAjG4HnlUACk2kimJA0JQTjrdwIFl8CYUJlCVFjxnE0AG39RMhJQHybpU3N2NSfT/1uAelcmR5EJsgmXUfN+PpE1Y2htPwSiKRPLxU1f3EgWkO73rUpRsEAp63zlTJtfQCfl6FK+tkQEQ2odP2gVHPGP++RqtK7KcUZVAAGru/oFagBqLyThiDIQIGd78B7B1ynxZ4hAPRag6I0AJMFQKvZeUhh1fcvVmqDr68s3gFgYak7+lApaxX4RoDtQEm1LpbqXdf1a12stt3sTgcJ2aTSOi8ey7AOS5FoTSfY5VYAMh2yOddazfOkACU5x5qGXX0HRWbcrgGQlAjGeZ5zzlhoLmQAWwZ9sEsf7FqYDYuCw2FkAKpCwzCYLp7BYh5TOCpYYAznoglb3JBwGCfiyRA/ZTgHUXvcP4ucAZCxvAgVQU1l2UxT05TSHQYsjJuBRR8If8hdDXaLyv0rLxcw+AN48qicv4W9HA6DaJE8VvlN4X1fLkXODyASxWOonn8q1+WRXOIxS0BOFck9DlczdDk5BQ1n7H5/AQHmEPT7v/sd73wWZ3G7/b+chEOx9rufEwAAAABJRU5ErkJggg==",
-    "url": "https://torrentgalaxy.to/torrents.php?search=tt{{IMDB_ID}}#results",
-    "noResultsMatcher": "Sorry. No results found...",
-    "category": "movie"
-  },
-  {
-    "id": "t-tgx",
-    "title": "TorrentGalaxy",
-    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAeFBMVEVHcExhZBDFyCG5uyDDxiHEyCClqhmAghZISQ1ISAzBxCHap0yhphpcXRCTlRl0ew/Axx+WnRVncAnUp0fFpTrLoETwxDXaujrLuTG2py3eplClmCjHySTUrUPdp0+NjhqwnyvgwTDRsj3rxDPouD/1xDfgplLhplNP/oMCAAAAJXRSTlMAOQkWITFCBAwYD9hQJyVLSDRataPI8aF6bvd/YZDqaovATdzynlru1QAAAelJREFUOI1lk9uaqyAMhUdA5CRCtZ5PtV/h/d9wAo5W9143KvlZiQn8/BzKsuzyer6fSwihYzVD8esWR0KINBUInhAjG4HnlUACk2kimJA0JQTjrdwIFl8CYUJlCVFjxnE0AG39RMhJQHybpU3N2NSfT/1uAelcmR5EJsgmXUfN+PpE1Y2htPwSiKRPLxU1f3EgWkO73rUpRsEAp63zlTJtfQCfl6FK+tkQEQ2odP2gVHPGP++RqtK7KcUZVAAGru/oFagBqLyThiDIQIGd78B7B1ynxZ4hAPRag6I0AJMFQKvZeUhh1fcvVmqDr68s3gFgYak7+lApaxX4RoDtQEm1LpbqXdf1a12stt3sTgcJ2aTSOi8ey7AOS5FoTSfY5VYAMh2yOddazfOkACU5x5qGXX0HRWbcrgGQlAjGeZ5zzlhoLmQAWwZ9sEsf7FqYDYuCw2FkAKpCwzCYLp7BYh5TOCpYYAznoglb3JBwGCfiyRA/ZTgHUXvcP4ucAZCxvAgVQU1l2UxT05TSHQYsjJuBRR8If8hdDXaLyv0rLxcw+AN48qicv4W9HA6DaJE8VvlN4X1fLkXODyASxWOonn8q1+WRXOIxS0BOFck9DlczdDk5BQ1n7H5/AQHmEPT7v/sd73wWZ3G7/b+chEOx9rufEwAAAABJRU5ErkJggg==",
-    "url": "https://torrentgalaxy.to/torrents.php?search=tt{{IMDB_ID}}#results",
-    "noResultsMatcher": "Sorry. No results found...",
-    "category": "tv"
-  },
-  {
     "id": "m-1337x",
     "title": "1337x",
     "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB8UlEQVQ4jcWTsWsUYRDF38z37WbvAkJEBIVDREEEETsbG1GwMJXapLSxUEvTRSxEUsVeFALaWIighZg/QRBMEEFEBEE9Qkji5e72dm935lmEmMilS+E0M8384M17IySxl9I9bQOIW8PPqZNX030TdylKB5Kq25lnOZijRmg6dj47eHgWIWZQzer29xeHni7O/AOoB/kHaAyh0TxFUYR07JZX5fParR0b4zdF9SxEwKr0apC/H5HgZt+qvDstdVUqHSFJjyLEK6J6TrPG5Natqu7v+1B9PSIhxAgBFqwsXoroFElo1pxWDesQySCKKu99qnsbjyDiIwDZbKyL/mwI8RKSdH9MsxZDbEmI8HJQD398nbNy0IZs3/7vRDPQDDD7aEX+OIQIiEBjgHfXUXxZelcs/3pW93uouxujLtR5DyChjXFNsmYLIrC8By6vwTqr8Gp4QEQmUFUru9oIcFOHVRe837lmq22wyAEzaJIgJOkJjbxd1/W9nYBtMcMCGJZjWvbv2NpyyrwLd1t0kTc70nqdwDHuBnAzkH6ZxEXRAIrCzB+62Yy59+kOiLQA3CAZRgHkcYg8AKAkQfIzybcUWXLnAkTgZlDVaQEmR3MQwukQQkFyEUDi7k9EZGXTYs67+xGSIcaYDd3PAHgFAPLfv/EPJs4IQHNr/+kAAAAASUVORK5CYII=",
